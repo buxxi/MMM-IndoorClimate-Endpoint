@@ -1,7 +1,11 @@
 {
-    "name": "MMM-IndoorTemperature-Endpoint",
+    "name": "mmm-indoortemperature-endpoint",
     "version": "1.0.0",
     "description": "A module for MagicMirror that can receive a POST-request for indoor temperature and forwards it as an event internally",
-    "dependencies": {}
-  }
-  
+    "dependencies": {},
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/buxxi/MMM-IndoorTemperature-Endpoint.git"
+    },
+    "homepage": "https://github.com/buxxi/MMM-IndoorTemperature-Endpoint"
+}
