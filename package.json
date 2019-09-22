@@ -1,5 +1,5 @@
 {
-    "name": "mmm-indoortemperature-endpoint",
+    "name": "MMM-IndoorTemperature-Endpoint",
     "version": "1.0.0",
     "description": "A module for MagicMirror that can receive a POST-request for indoor temperature and forwards it as an event internally",
     "dependencies": {}
