@@ -13,8 +13,10 @@
 3. Done!
 
 ## Send data to the module
-An example how to provide the magic mirror with an indoor temperature 
+An example how to provide the magic mirror with an indoor temperature.
+
 ``curl -X POST -d 'temp=<VALUE>' http://<IP>:<PORT>/indoor-temperature``
+
 Where the arguments are:
 1. VALUE: the degrees of the indoor temperature
 2. IP: the ip address to the magic mirror
