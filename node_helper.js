@@ -4,7 +4,7 @@ const express = require("express");
 module.exports = NodeHelper.create({
 	start: function() {
 		console.log("Starting node helper for: " + this.name);
-		this.expressApp.use(express.urlencoded());
+		this.expressApp.use(express.urlencoded({ extended: true }));
 		this.expressApp.post('/indoor-temperature', this._onTemperatureValueReceived.bind(this));
 
 		this.temperature = undefined;
