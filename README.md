@@ -18,6 +18,7 @@
 Two examples how to provide the magic mirror with an indoor temperature or humidity.
 
 ``curl -X POST -d '{"temp":<VALUE>}' http://<IP>:<PORT>/indoor-temperature``
+
 ``curl -X POST -d '{"humidity":<VALUE>}' http://<IP>:<PORT>/indoor-humidity``
 
 Where the arguments are:
