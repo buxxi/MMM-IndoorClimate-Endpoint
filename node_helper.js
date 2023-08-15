@@ -6,14 +6,20 @@ module.exports = NodeHelper.create({
 		console.log("Starting node helper for: " + this.name);
 		this.expressApp.use(express.urlencoded({ extended: true }));
 		this.expressApp.post('/indoor-temperature', this._onTemperatureValueReceived.bind(this));
+		this.expressApp.post('/indoor-humidity', this._onHumidityValueReceived.bind(this));
 
 		this.temperature = undefined;
+		this.humidity = undefined;
 	},
 
 	socketNotificationReceived: function (notification, payload) {
-		if (notification == "REQUEST_INDOOR_TEMPERATURE") {
+		if (notification === "REQUEST_INDOOR_TEMPERATURE") {
 			if (this.temperature) {
 				this._sendTemperature();
+			}
+		} else if (notification === "REQUEST_INDOOR_HUMIDITY") {
+			if (this.humidity) {
+				this._sendHumidity();
 			}
 		}
 	},
@@ -30,8 +36,24 @@ module.exports = NodeHelper.create({
 		res.sendStatus(200);
 	},
 
+	_onHumidityValueReceived: function(req, res) {
+		if (!req.body.humidity || isNaN(req.body.humidity)) {
+			res.sendStatus(400);
+			return;
+		}
+
+		this.humidity = Number(req.body.humidity);
+		this._sendHumidity();
+
+		res.sendStatus(200);
+	},
+
 
 	_sendTemperature: function() {
 		this.sendSocketNotification('INDOOR_TEMPERATURE', this.temperature);
+	},
+
+	_sendHumidity: function() {
+		this.sendSocketNotification('INDOOR_HUMIDITY', this.humidity);
 	}
 });
