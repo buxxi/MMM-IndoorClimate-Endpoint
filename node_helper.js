@@ -4,6 +4,7 @@ const express = require("express");
 module.exports = NodeHelper.create({
 	start: function() {
 		console.log("Starting node helper for: " + this.name);
+
 		this.expressApp.use(express.urlencoded({ extended: true }));
 		this.expressApp.post('/indoor-climate', this._onClimateValueReceived.bind(this));
 
@@ -26,8 +27,12 @@ module.exports = NodeHelper.create({
 	_onClimateValueReceived: function(req, res) {
 		const payloadValues = ['temp', 'humidity'];
 
-		if (payloadValues.every(value => req.body[value] !== undefined)) {
+		if (payloadValues.some(value => req.body[value] !== undefined)) {
 			payloadValues.forEach(value => {
+				if(req.body[value] === undefined){
+					return
+				}
+
 				switch (value) {
 					case 'temp':
 						this._onTemperatureValueReceived(req, res);
