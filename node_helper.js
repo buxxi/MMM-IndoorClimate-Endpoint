@@ -5,8 +5,7 @@ module.exports = NodeHelper.create({
 	start: function() {
 		console.log("Starting node helper for: " + this.name);
 		this.expressApp.use(express.urlencoded({ extended: true }));
-		this.expressApp.post('/indoor-temperature', this._onTemperatureValueReceived.bind(this));
-		this.expressApp.post('/indoor-humidity', this._onHumidityValueReceived.bind(this));
+		this.expressApp.post('/indoor-climate', this._onClimateValueReceived.bind(this));
 
 		this.temperature = undefined;
 		this.humidity = undefined;
@@ -24,28 +23,47 @@ module.exports = NodeHelper.create({
 		}
 	},
 
+	_onClimateValueReceived: function(req, res) {
+		const payloadValues = ['temp', 'humidity'];
+
+		if (payloadValues.every(value => req.body[value] !== undefined)) {
+			payloadValues.forEach(value => {
+				switch (value) {
+					case 'temp':
+						_onTemperatureValueReceived(req, res);
+						break;
+					case 'humidity':
+						_onHumidityValueReceived(req, res);
+						break;
+
+					default:
+						break;
+				}
+			});
+			res.sendStatus(200);
+		} else {
+			res.sendStatus(400);
+		}
+	},
+
 	_onTemperatureValueReceived: function(req, res) {
-		if (!req.body.temp || isNaN(req.body.temp)) {
+		if (isNaN(req.body.temp)) {
 			res.sendStatus(400);
 			return;
 		}
 
 		this.temperature = Number(req.body.temp);
 		this._sendTemperature();
-	
-		res.sendStatus(200);
 	},
 
 	_onHumidityValueReceived: function(req, res) {
-		if (!req.body.humidity || isNaN(req.body.humidity)) {
+		if (isNaN(req.body.humidity)) {
 			res.sendStatus(400);
 			return;
 		}
 
 		this.humidity = Number(req.body.humidity);
 		this._sendHumidity();
-
-		res.sendStatus(200);
 	},
 
 

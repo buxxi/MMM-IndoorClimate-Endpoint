@@ -1,7 +1,7 @@
 {
-    "name": "mmm-indoortemperature-endpoint",
+    "name": "mmm-indoorclimate-endpoint",
     "version": "1.0.0",
-    "description": "A module for MagicMirror that can receive a POST-request for indoor temperature and forwards it as an event internally",
+    "description": "A module for MagicMirror that can receive a POST-request for indoor climate values like temperature or humidty and forwards it as an event internally",
     "license": "MIT",
     "dependencies": {},
     "repository": {

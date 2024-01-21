@@ -1,4 +1,4 @@
-Module.register("MMM-IndoorTemperatureHumidity-Endpoint",{
+Module.register("MMM-IndoorClimate-Endpoint",{
 	defaults: {},
 
 	start: function() {
