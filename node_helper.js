@@ -30,10 +30,10 @@ module.exports = NodeHelper.create({
 			payloadValues.forEach(value => {
 				switch (value) {
 					case 'temp':
-						_onTemperatureValueReceived(req, res);
+						this._onTemperatureValueReceived(req, res);
 						break;
 					case 'humidity':
-						_onHumidityValueReceived(req, res);
+						this._onHumidityValueReceived(req, res);
 						break;
 
 					default:
