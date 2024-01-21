@@ -6,7 +6,7 @@
     "dependencies": {},
     "repository": {
         "type": "git",
-        "url": "https://github.com/buxxi/MMM-IndoorTemperature-Endpoint.git"
+        "url": "https://github.com/buxxi/MMM-IndoorClimate-Endpoint.git"
     },
-    "homepage": "https://github.com/buxxi/MMM-IndoorTemperature-Endpoint"
+    "homepage": "https://github.com/buxxi/MMM-IndoorClimate-Endpoint"
 }
